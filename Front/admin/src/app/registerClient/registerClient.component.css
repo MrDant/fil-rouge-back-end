@@ -1,0 +1,65 @@
+#left, #right {
+    display: inline-block;
+    width: 50%;
+}
+
+#title {
+    margin-bottom: 70px;
+}
+
+h3 {
+    color: #25BC76;
+}
+
+.text-center {
+    text-align: center;
+}
+
+body {
+    background-color: #FAFAFA;
+}
+
+.content {
+    display: flex;
+    margin: 82px auto 32px;
+    padding: 0 16px;
+    max-width: 960px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button {
+    margin-top: 80px;
+    background-color: #FFFFFF;
+      padding: 7px 25px 7px 25px;
+      color: #707070;
+      border: 1px solid #707070;
+}
+
+.champ {
+    width: 100%;
+    display: flex;
+}
+
+.champ .collabel {
+    width: 33%;
+    text-align: right;
+}
+
+.champ .colinput {
+    width: 66%;
+    
+}
+
+.champ label {
+    color: #707070;
+}
+
+.champ input {
+    background-color: #FFFFFF;
+    padding: 7px 10px 7px 10px;
+    color: #707070;
+    border: 1px solid #707070;
+    width: 70%;
+}
+
