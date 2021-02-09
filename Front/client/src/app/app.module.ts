@@ -8,11 +8,8 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginClient } from './LoginClient/loginClient';
 import { RegisterClientComponent } from './registerClient/registerClient.component';
-import { StockComponent } from './AdminStock/AdminStock.component';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableModule } from "@angular/material/table";
-import {MatPaginatorModule} from '@angular/material/paginator';
 import { EditPasswordComponent } from './editPassword/editPassword.component';
 import { MyAccountComponent } from './myAccount/myAccount.component';
 
@@ -23,7 +20,6 @@ import { MyAccountComponent } from './myAccount/myAccount.component';
     HeaderComponent,
     LoginClient,
     RegisterClientComponent,
-    StockComponent,
     EditPasswordComponent,
     MyAccountComponent
   ],
@@ -32,9 +28,7 @@ import { MyAccountComponent } from './myAccount/myAccount.component';
     AppRoutingModule,
     ReactiveFormsModule,
     CommonModule,
-    BrowserAnimationsModule,
-    MatTableModule,
-    MatPaginatorModule
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
