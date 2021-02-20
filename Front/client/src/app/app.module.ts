@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditPasswordComponent } from './editPassword/editPassword.component';
 import { MyAccountComponent } from './myAccount/myAccount.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MyAccountComponent } from './myAccount/myAccount.component';
     LoginClient,
     RegisterClientComponent,
     EditPasswordComponent,
-    MyAccountComponent
+    MyAccountComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
