@@ -1,0 +1,29 @@
+services:
+  auth-nginx:
+    container_name: auth-nginx
+    build:
+      context: .docker/api/
+      args:
+        name: auth
+    volumes:
+      - ./auth/app:/usr/src/app
+    ports:
+      - 81:80
+    labels:
+      - traefik.http.routers.auth.rule=PathPrefix(`/auth`)
+
+  auth-php:
+    container_name: auth-php
+    build: .docker/fpm/
+    volumes:
+      - "./auth/app:/usr/src/app"
+
+  auth-db:
+    image: postgres
+    container_name: auth-db
+    restart: always
+    ports: 
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: auth-password
+      POSTGRES_DB: auth-db
