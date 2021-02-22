@@ -1,0 +1,37 @@
+@import "src/assets/scss/variables";
+
+form {
+  background: $bg_form;
+  border-radius: 8px;
+  margin: 10vh 25vw 0;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: #00000054 0px 1px 6px;
+  input {
+    text-align: center;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    width: 80%;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 1rem 1rem 4rem;
+  }
+
+  .action-button {
+    font-size: 20px;
+    button {
+      font-size: 20px;
+      font-weight: 200;
+    }
+    a {
+      font-style: italic;
+      color: $blue;
+    }
+  }
+
+}
