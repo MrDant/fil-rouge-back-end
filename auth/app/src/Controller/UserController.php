@@ -6,7 +6,7 @@ namespace App\Controller;
 use App\Entity\User;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -18,22 +18,21 @@ class UserController extends AbstractFOSRestController
      */
     public function register(Request $request): JsonResponse {
         $content = json_decode($request->getContent());
-        if(!$content->username || !$content->password) {
-            throw new BadRequestHttpException("Donnée invalide");
+        if(!$content->email || !$content->password) {
+            return new JsonResponse("Donnée invalide", Response::HTTP_CONFLICT);
         }
         $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository(User::class)->findBy(["username" => $content->username]);
+        $user = $em->getRepository(User::class)->findBy(["email" => $content->email]);
         if($user) {
-            throw new BadRequestHttpException("Utilisateur déjà existant");
+            return new JsonResponse("Utilisateur déjà existant", Response::HTTP_CONFLICT);
         }
         $user = new User();
-        $user->setUsername($content->username);
+        $user->setEmail($content->email);
         $user->setPassword($content->password);
         $em = $this->getDoctrine()->getManager();
-        $token = $this->get('lexik_jwt_authentication.jwt_manager')->create($user);
         $em->persist($user);
         $em->flush();
-        return new JsonResponse(['token' => $token]);
+        return new JsonResponse("ok", Response::HTTP_OK);
     }
 
 
