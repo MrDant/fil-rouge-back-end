@@ -1,25 +1,34 @@
 import { Injectable } from "@angular/core";
-import {Observable, of} from "rxjs";
-import {tap} from "rxjs/operators";
+import {BehaviorSubject, Observable} from "rxjs";
+import {mapTo, tap} from "rxjs/operators";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: "root"
 })
 export class UserService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  login(form: {email: string; password: string}): Observable<string> {
-    return of("dsfcsd").pipe(tap(token => {
-      localStorage.setItem("token", token);
-    }));
+  private connected: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(!!localStorage.getItem("token"));
+
+  login(form: {email: string; password: string}): Observable<boolean> {
+    return this.http.post<{token: string}>("/api/auth/login", form).pipe(tap(e => {
+      localStorage.setItem("token", e.token);
+      this.connected.next(true);
+    }), mapTo(true));
   }
 
   logout(): void {
     localStorage.clear();
+    this.connected.next(false);
+  }
+
+  get connected$(): Observable<boolean> {
+    return this.connected;
   }
 
   isConnected(): boolean {
-    return !!localStorage.getItem("token");
+    return this.connected.getValue();
   }
 }

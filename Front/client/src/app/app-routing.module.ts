@@ -4,14 +4,21 @@ import { RegisterClientComponent } from "./registerClient/registerClient.compone
 import { EditPasswordComponent } from "./editPassword/editPassword.component";
 import { MyAccountComponent } from "./myAccount/myAccount.component";
 import { HomeComponent } from "./home/home.component";
-import {LoginComponent} from "./View/login/login.component";
+import {LoginComponent} from "./view/login/login.component";
+import {AuthenticationGuard} from "./UI/guard/authentication.guard";
 
 const routes: Routes = [
-  {path: "login", component: LoginComponent},
+
   {path: "register", component: RegisterClientComponent},
   {path: "editPassword", component: EditPasswordComponent},
   {path: "myAccount", component: MyAccountComponent},
-  {path: "", component: HomeComponent}
+  {
+    path: "",
+    canActivate: [AuthenticationGuard],
+    children: [
+      {path: "", component: HomeComponent},
+      {path: "login", component: LoginComponent}
+    ]}
 ];
 
 @NgModule({

@@ -11,7 +11,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { EditPasswordComponent } from "./editPassword/editPassword.component";
 import { MyAccountComponent } from "./myAccount/myAccount.component";
 import { HomeComponent } from "./home/home.component";
-import { LoginComponent } from "./View/login/login.component";
+import { LoginComponent } from "./view/login/login.component";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LoginComponent } from "./View/login/login.component";
     AppRoutingModule,
     ReactiveFormsModule,
     CommonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
