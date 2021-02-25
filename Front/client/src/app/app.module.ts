@@ -13,6 +13,7 @@ import { MyAccountComponent } from "./myAccount/myAccount.component";
 import { HomeComponent } from "./home/home.component";
 import { LoginComponent } from "./view/login/login.component";
 import {HttpClientModule} from "@angular/common/http";
+import { RegisterComponent } from './view/register/register.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {HttpClientModule} from "@angular/common/http";
     EditPasswordComponent,
     MyAccountComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
