@@ -1,0 +1,21 @@
+<form
+  [formGroup]="loginForm"
+  class="text-center"
+  id="form"
+  (ngSubmit)="onSubmit()"
+>
+  <label for="email">Email :</label>
+  <input id="email" placeholder="example@outlook.fr" formControlName="email" />
+
+  <label for="password">Mot de passe :</label>
+  <input
+    id="password"
+    placeholder="***************"
+    formControlName="password"
+    type="password"
+  />
+  <div class="action-button">
+    <button type="submit" color="blue">Se connecter</button>
+    <a routerLink="/register">Créer un compte</a>
+  </div>
+</form>

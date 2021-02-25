@@ -1,21 +1,29 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { LoginClient } from './LoginClient/loginClient';
-import { RegisterClientComponent } from './registerClient/registerClient.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 import { EditPasswordComponent } from "./editPassword/editPassword.component";
 import { MyAccountComponent } from "./myAccount/myAccount.component";
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from "./home/home.component";
+import { LoginComponent } from "./view/login/login.component";
+import { AuthenticationGuard } from "./UI/guard/authentication.guard";
+import { RegisterComponent } from "./view/register/register.component";
 
 const routes: Routes = [
-  {path:'login', component:LoginClient},
-  {path:'register', component:RegisterClientComponent},
-  {path:'editPassword', component:EditPasswordComponent},
-  {path:'myAccount', component:MyAccountComponent},
-  {path:'', component:HomeComponent}
+    { path: "editPassword", component: EditPasswordComponent },
+    { path: "myAccount", component: MyAccountComponent },
+    {
+        path: "",
+        canActivate: [AuthenticationGuard],
+        canActivateChild: [AuthenticationGuard],
+        children: [
+            { path: "", component: HomeComponent },
+            { path: "login", component: LoginComponent },
+            { path: "register", component: RegisterComponent },
+        ],
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

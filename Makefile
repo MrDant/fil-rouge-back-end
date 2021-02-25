@@ -13,3 +13,6 @@ bash:
 
 console:
 	docker exec -it ${service}-php php bin/console ${cmd}
+
+install:
+	docker exec -it ${service}-php composer install

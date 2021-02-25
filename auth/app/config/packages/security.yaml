@@ -1,8 +1,13 @@
 security:
+    encoders:
+        App\Entity\User:
+            algorithm: 'plaintext'
+
     providers:
         users:
             entity:
                 class: 'App\Entity\User'
+                property: email
 
     firewalls:
         dev:
