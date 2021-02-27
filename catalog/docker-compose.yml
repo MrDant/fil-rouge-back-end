@@ -1,0 +1,25 @@
+services:
+  catalog-nginx:
+    container_name: catalog-nginx
+    build:
+      context: .docker/api/
+      args:
+        name: catalog
+    volumes:
+      - ./catalog/app:/usr/src/app
+    labels:
+      - traefik.http.routers.catalog.rule=PathPrefix(`/`)
+
+  catalog-php:
+    container_name: catalog-php
+    build: .docker/fpm/
+    volumes:
+      - "./catalog/app:/usr/src/app"
+
+  catalog-db:
+    image: postgres
+    container_name: catalog-db
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: catalog-password
+      POSTGRES_DB: catalog-db
