@@ -1,4 +1,4 @@
-FILES=-f ./docker-compose.yml -f ./auth/docker-compose.yml
+FILES=-f ./docker-compose.yml -f ./auth/docker-compose.yml -f ./catalog/docker-compose.yml
 up:
 	docker-compose ${FILES} up -d
 
@@ -13,6 +13,9 @@ bash:
 
 console:
 	docker exec -it ${service}-php php bin/console ${cmd}
+
+composer:
+	docker exec -it ${service}-php composer ${cmd}
 
 install:
 	docker exec -it ${service}-php composer install
