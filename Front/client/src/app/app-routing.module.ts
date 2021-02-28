@@ -12,14 +12,16 @@ const routes: Routes = [
     { path: "myAccount", component: MyAccountComponent },
     {
         path: "",
-        canActivate: [AuthenticationGuard],
-        canActivateChild: [AuthenticationGuard],
         children: [
             { path: "", component: HomeComponent },
             { path: "login", component: LoginComponent },
             { path: "register", component: RegisterComponent },
         ],
     },
+  {path:'myAccount', component:MyAccountComponent},
+  {path:'about-us', component:AboutUsComponent},
+import { HomeComponent } from './home/home.component';
+import { AboutUsComponent } from './aboutUs/aboutUs.component';
 ];
 
 @NgModule({
