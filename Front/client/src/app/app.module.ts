@@ -1,4 +1,4 @@
-import { ContactComponent } from "./contact/contact.component";
+import { ContactComponent } from './contact/contact.component';
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
@@ -14,8 +14,7 @@ import { HomeComponent } from "./home/home.component";
 import { LoginComponent } from "./view/login/login.component";
 import { HttpClientModule } from "@angular/common/http";
 import { RegisterComponent } from "./view/register/register.component";
-import { AboutUsComponent } from "./aboutUs/aboutUs.component";
-import { ProductComponent } from "./View/product/product.component";
+import { AboutUsComponent } from './aboutUs/aboutUs.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +27,7 @@ import { ProductComponent } from "./View/product/product.component";
     ContactComponent,
     LoginComponent,
     RegisterComponent,
-    AboutUsComponent,
-    ProductComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,
