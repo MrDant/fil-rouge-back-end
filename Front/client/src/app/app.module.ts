@@ -14,6 +14,7 @@ import { HomeComponent } from "./home/home.component";
 import { LoginComponent } from "./view/login/login.component";
 import { HttpClientModule } from "@angular/common/http";
 import { RegisterComponent } from "./view/register/register.component";
+import { AboutUsComponent } from './aboutUs/aboutUs.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { RegisterComponent } from "./view/register/register.component";
     ContactComponent,
     LoginComponent,
     RegisterComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,
