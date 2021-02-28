@@ -6,6 +6,7 @@ import { HomeComponent } from "./home/home.component";
 import { LoginComponent } from "./view/login/login.component";
 import { AuthenticationGuard } from "./UI/guard/authentication.guard";
 import { RegisterComponent } from "./view/register/register.component";
+import { AboutUsComponent } from './aboutUs/aboutUs.component';
 
 const routes: Routes = [
     { path: "editPassword", component: EditPasswordComponent },
@@ -20,8 +21,6 @@ const routes: Routes = [
     },
   {path:'myAccount', component:MyAccountComponent},
   {path:'about-us', component:AboutUsComponent},
-import { HomeComponent } from './home/home.component';
-import { AboutUsComponent } from './aboutUs/aboutUs.component';
 ];
 
 @NgModule({
