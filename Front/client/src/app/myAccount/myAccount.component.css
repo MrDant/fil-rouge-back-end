@@ -23,12 +23,29 @@ body {
     align-items: center;
 }
 
-.button {
+/*.button {
     margin-top: 80px;
     background-color: #FFFFFF;
       padding: 7px 25px 7px 25px;
       color: #707070;
       border: 1px solid #707070;
+}*/
+
+.button, .button :hover {
+      margin-top: 80px;
+      background-color: #0066ff;
+      padding: 7px 25px 7px 25px;
+      border: 1px solid #707070;
+  	  border-radius: 50px;
+  	  color: #FFFFFF;
+  }
+
+.btn-mdp {
+  background-color: #25BC76;
+}
+
+.btn-save {
+  background-color: #319BFF;
 }
 
 .champ {
@@ -66,5 +83,5 @@ body {
 
 .button:nth-child(1) {
     margin-right: 80px;
-    margin-left: -15%; 
+    margin-left: -15%;
 }

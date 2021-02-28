@@ -1,3 +1,4 @@
+import { ContactComponent } from './contact/contact.component';
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
@@ -22,6 +23,7 @@ import { RegisterComponent } from "./view/register/register.component";
     EditPasswordComponent,
     MyAccountComponent,
     HomeComponent,
+    ContactComponent,
     LoginComponent,
     RegisterComponent,
   ],
