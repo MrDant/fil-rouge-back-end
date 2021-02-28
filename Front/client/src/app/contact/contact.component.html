@@ -1,0 +1,66 @@
+<div class="content" role="main">
+    <h3 id="title" class="text-center">Contactez-nous</h3>
+  <form [formGroup]="registerForm" class="text-center" id="form" (ngSubmit)="onSubmit()">
+		<div class="champ">
+			<div class="collabel">
+                <p class="label"><label for="lastname">
+                            Nom :
+                        </label></p>
+                </div>
+                <div class="colinput">
+                    <input id="lastname" type="text" placeholder="Dupont" class="text-center"
+                        formControlName="lastname">
+                </div>
+            </div>
+			
+            <div class="champ">
+                <div class="collabel">
+                    <p class="label"><label for="firstname">
+                            Prenom :
+                        </label></p>
+                </div>
+                <div class="colinput">
+                    <input id="firstname" type="text" placeholder="Jean" class="text-center"
+                        formControlName="firstname">
+                </div>
+            </div>
+			
+			            <div class="champ">
+                <div class="collabel">
+                    <p class="label"><label for="mail">
+                            Email :
+                        </label></p>
+                </div>
+                <div class="colinput">
+                    <input id="mail" type="text" placeholder="jeandupont@gmail.com" class="text-center"
+                        formControlName="mail">
+                </div>
+            </div>
+			
+			            <div class="champ">
+                <div class="collabel">
+                    <p class="label"><label for="object">
+                            Objet :
+                        </label></p>
+                </div>
+                <div class="colinput">
+                    <input id="object" type="text" placeholder="Sujet du contact" class="text-center"
+                        formControlName="object">
+                </div>
+            </div>
+			
+						
+			            <div class="champ">
+                <div class="collabel">
+                    <p class="label"><label for="message">
+                            Message :
+                        </label></p>
+                </div>
+                <div class="colinput">
+                    <textarea id="message" placeholder="Sujet du contact" class="text-center longmessage"></textarea>
+                </div>
+            </div>
+			
+    <br><button type="submit" class="button">Envoyer</button><br>
+  </form>
+</div>

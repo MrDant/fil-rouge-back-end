@@ -6,20 +6,22 @@ import { HomeComponent } from "./home/home.component";
 import { LoginComponent } from "./view/login/login.component";
 import { AuthenticationGuard } from "./UI/guard/authentication.guard";
 import { RegisterComponent } from "./view/register/register.component";
+import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [
     { path: "editPassword", component: EditPasswordComponent },
     { path: "myAccount", component: MyAccountComponent },
     {
         path: "",
-        canActivate: [AuthenticationGuard],
-        canActivateChild: [AuthenticationGuard],
+        //canActivate: [AuthenticationGuard],
+        //canActivateChild: [AuthenticationGuard],
         children: [
             { path: "", component: HomeComponent },
             { path: "login", component: LoginComponent },
             { path: "register", component: RegisterComponent },
         ],
     },
+  {path:'contact', component:ContactComponent}
 ];
 
 @NgModule({
