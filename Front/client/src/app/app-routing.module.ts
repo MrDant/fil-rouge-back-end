@@ -7,6 +7,8 @@ import { LoginComponent } from "./view/login/login.component";
 import { AuthenticationGuard } from "./UI/guard/authentication.guard";
 import { RegisterComponent } from "./view/register/register.component";
 import { ProductComponent } from "./View/product/product.component";
+import { AboutUsComponent } from "./aboutUs/aboutUs.component";
+import { ContactComponent } from "./contact/contact.component";
 
 const routes: Routes = [
   { path: "editPassword", component: EditPasswordComponent },
@@ -22,11 +24,9 @@ const routes: Routes = [
       { path: "product/{id}", component: ProductComponent },
     ],
   },
-import { AboutUsComponent } from './aboutUs/aboutUs.component';
-import { ContactComponent } from './contact/contact.component';
-  {path:'myAccount', component:MyAccountComponent},
-  {path:'about-us', component:AboutUsComponent},
-  {path:'contact', component:ContactComponent}
+  { path: "myAccount", component: MyAccountComponent },
+  { path: "about-us", component: AboutUsComponent },
+  { path: "contact", component: ContactComponent },
 ];
 
 @NgModule({
