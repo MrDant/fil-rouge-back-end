@@ -1,0 +1,21 @@
+<header>
+  <a routerLink="/" id="logo">Verre-Tech</a>
+  <ng-container *ngIf="isConnected">
+    <a routerLink="/user" *ngIf="isAdminArea">Utilisateurs</a>
+    <a routerLink="/">Accueil</a>
+    <a routerLink="/catalog">Catalogue</a>
+    <a routerLink="/storehouse">Nos entrepôts</a>
+  </ng-container>
+  <div id="authentication">
+    <ng-container *ngIf="!isConnected">
+      <a routerLink="/login">Connexion</a>/<a routerLink="/register"
+        >Inscription</a
+      >
+    </ng-container>
+    <ng-container *ngIf="isConnected">
+      <a routerLink="/account" *ngIf="isAdminArea"><i>account</i></a>
+      <a (click)="logout()">Déconnexion</a>
+      <a routerLink="/cart" *ngIf="!isAdminArea">cart</a>
+    </ng-container>
+  </div>
+</header>

@@ -1,0 +1,49 @@
+@import "src/assets/scss/variables";
+@import "src/assets/scss/theme";
+
+$button_width: 150px;
+input {
+  width: 90%;
+  margin-bottom: 0.5rem;
+}
+
+label {
+  font-size: 19px;
+  margin: 0.5rem 0;
+}
+
+form {
+  @include form;
+  margin: 5vh;
+  .wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    label {display: block}
+
+    .w-50 {
+      width: 50%;
+      display: inline-block;
+      input {
+        width: 80%;
+      }
+    }
+  }
+  .action-container {
+    transform: translateX($button_width/2);
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button {
+      width: $button_width;
+      font-size: 20px;
+      font-weight: 200;
+    }
+    a {
+      font-style: italic;
+      color: $blue;
+    }
+  }
+}
+

@@ -1,0 +1,83 @@
+<div class="content" role="main">
+    <h3 id="title" class="text-center">Mon compte</h3>
+    <form [formGroup]="editAccountForm" class="text-center" id="form" (ngSubmit)="onSubmit()">
+
+            <div class="champ">
+                <div class="collabel">
+                    <p class="label"><label for="lastname">
+                            Nom :
+                        </label></p>
+                </div>
+                <div class="colinput">
+                    <input id="lastname" type="text" placeholder="Dupont" class="text-center"
+                        formControlName="lastname">
+                </div>
+            </div>
+            <div class="champ">
+                <div class="collabel">
+                    <p class="label"><label for="firstname">
+                            Prenom :
+                        </label></p>
+                </div>
+                <div class="colinput">
+                    <input id="firstname" type="text" placeholder="Jean" class="text-center"
+                        formControlName="firstname">
+                </div>
+            </div>
+            <div class="champ">
+                <div class="collabel">
+                    <p class="label"><label for="mail">
+                            Email :
+                        </label></p>
+                </div>
+                <div class="colinput">
+                    <input id="mail" type="text" placeholder="jeandupont@gmail.com" class="text-center"
+                        formControlName="mail">
+                </div>
+            </div>
+            <div class="champ">
+                <div class="collabel">
+                    <p class="label"><label for="phone">
+                            Téléphone :
+                        </label></p>
+                </div>
+                <div class="colinput">
+                    <input id="phone" type="number" placeholder="06000000" class="text-center" formControlName="phone">
+                </div>
+            </div>
+            <div class="champ">
+                <div class="collabel">
+                    <p class="label"><label for="address">
+                            Adresse :
+                        </label></p>
+                </div>
+                <div class="colinput">
+                    <input id="address" type="text" placeholder="2 rue des Jacquelines" class="text-center"
+                        formControlName="address">
+                </div>
+            </div>
+            <div class="champ">
+                <div class="collabel">
+                    <p class="label"><label for="CP">
+                            Code Postal :
+                        </label></p>
+                </div>
+                <div class="colinput">
+                    <input id="CP" type="number" placeholder="54000" class="text-center" formControlName="CP">
+                </div>
+            </div>
+            <div class="champ">
+                <div class="collabel">
+                    <p class="label"><label for="city">
+                            Ville :
+                        </label></p>
+                </div>
+                <div class="colinput">
+                    <input id="city" type="text" placeholder="Nancy" class="text-center" formControlName="city">
+                </div>
+            </div>
+        <p>
+        <button type="submit" class="button btn-mdp">Modifier le mot de passe</button>
+        <button type="submit" class="button btn-save">Sauvegarder</button></p>
+    </form>
+</div>

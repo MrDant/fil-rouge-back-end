@@ -1,0 +1,29 @@
+.spacer {
+    flex: 1;
+}
+
+.toolbar {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: #333333;
+    color: #D6D6D5;
+    font-weight: 600;
+    width: calc(98%);
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.toolbar img {
+    margin: 0 16px;
+}
+
+.toolbar a, .toolbar a:visited, .toolbar a:hover {
+    color: #D6D6D5;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.toolbar a:not(:last-child) {
+    margin-right: 2%;
+}
