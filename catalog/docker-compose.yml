@@ -1,5 +1,5 @@
 volumes:
-  db:
+  catalog-db:
 
 services:
   catalog-nginx:
@@ -24,7 +24,7 @@ services:
     container_name: catalog-db
     restart: always
     volumes:
-      - db:/var/lib/postgresql/data
+      - catalog-db:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: catalog-password
       POSTGRES_DB: catalog-db

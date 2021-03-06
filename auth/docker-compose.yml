@@ -1,5 +1,5 @@
 volumes:
-  db:
+  auth-db:
 
 services:
   auth-nginx:
@@ -24,7 +24,7 @@ services:
     container_name: auth-db
     restart: always
     volumes:
-      - db:/var/lib/postgresql/data
+      - auth-db:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: auth-password
       POSTGRES_DB: auth-db
