@@ -20,8 +20,7 @@ class ImageController extends AbstractController
             return new Response(null, Response::HTTP_FOUND);
         }
         $response = new BinaryFileResponse($filePath, Response::HTTP_OK);
-        $response->headers
-            ->set('Content-Type', mime_content_type($filePath));
+        $response->headers->set('Content-Type', mime_content_type($filePath));
         return $response;
     }
 }

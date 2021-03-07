@@ -42,14 +42,15 @@ class Product
     private $stock;
 
     /**
-     * @ORM\OneToMany(targetEntity=Media::class, mappedBy="product")
-     */
-    private $media;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="products")
      */
     private $category;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image;
+
 
     public function __construct()
     {
@@ -109,36 +110,6 @@ class Product
         return $this;
     }
 
-    /**
-     * @return Collection|Media[]
-     */
-    public function getMedia(): Collection
-    {
-        return $this->media;
-    }
-
-    public function addMedium(Media $medium): self
-    {
-        if (!$this->media->contains($medium)) {
-            $this->media[] = $medium;
-            $medium->setProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMedium(Media $medium): self
-    {
-        if ($this->media->removeElement($medium)) {
-            // set the owning side to null (unless already changed)
-            if ($medium->getProduct() === $this) {
-                $medium->setProduct(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getCategory(): ?Category
     {
         return $this->category;
@@ -147,6 +118,18 @@ class Product
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
