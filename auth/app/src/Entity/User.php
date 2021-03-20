@@ -12,6 +12,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
+    public const ALL_ROLE = [User::CLIENT_ROLE, User::ADMIN_ROLE];
+
+    public const CLIENT_ROLE = "ROLE_CLIENT";
+    public const ADMIN_ROLE = "ROLE_ADMIN";
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -33,6 +37,42 @@ class User implements UserInterface
      * @ORM\Column(type="array", nullable=true)
      */
     private $roles = [];
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $shop;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $firstname;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $lastname;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $phone;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $address;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $postalcode;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $city;
+
 
     public function getId(): ?int
     {
@@ -89,4 +129,89 @@ class User implements UserInterface
     {
         // TODO: Implement eraseCredentials() method.
     }
+
+    public function getShop(): ?int
+    {
+        return $this->shop;
+    }
+
+    public function setShop(?int $shop): self
+    {
+        $this->shop = $shop;
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(?string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(?string $lastname): self
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): self
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getPostalcode(): ?string
+    {
+        return $this->postalcode;
+    }
+
+    public function setPostalcode(?string $postalcode): self
+    {
+        $this->postalcode = $postalcode;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(?string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
 }

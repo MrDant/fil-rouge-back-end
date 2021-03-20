@@ -30,7 +30,6 @@ security:
             stateless: true
             anonymous: true
 
-
         api:
             pattern: ^/auth
             stateless: true

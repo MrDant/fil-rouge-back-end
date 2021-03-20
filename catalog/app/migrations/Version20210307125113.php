@@ -36,7 +36,8 @@ final class Version20210307125113 extends AbstractMigration
         foreach ($images as $image) {
             $this->connection->update('product', ['image' => $image['src']], ['id' => $image['id']]);
         }
-
+        $this->connection->update('category', ['image' => '/catalog/img/product1.jpg'], ['id' => 1]);
+        $this->connection->update('category', ['image' => '/catalog/img/product2.jpg'], ['id' => 2]);
     }
 
     public function down(Schema $schema) : void
