@@ -7,6 +7,7 @@ use App\Entity\User;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -38,6 +39,14 @@ class UserController extends AbstractFOSRestController
     }
 
     /**
+     * @Route (name="me", path="/auth/me", methods={"GET"})
+     */
+    public function me(Request $request): Response {
+        $response = $this->container->get('serializer')->serialize($this->getUser(), 'json');
+        return new Response($response, Response::HTTP_OK);
+    }
+
+    /**
      * @Route (name="update_user", path="/auth/user", methods={"PUT"})
      */
     public function update(Request $request): Response {
@@ -50,6 +59,23 @@ class UserController extends AbstractFOSRestController
         $em->flush();
         $response = $this->container->get('serializer')->serialize($user, 'json');
         return new Response($response, Response::HTTP_OK);
+    }
+
+    /**
+     * @Route (name="change-password", path="/auth/change-password", methods={"POST"})
+     */
+    public function changePassword(Request $request): Response {
+        $content = json_decode($request->getContent());
+        /** @var User $user */
+        $user = $this->getUser();
+        if($user->getPassword() == $content->currentPassword && $content->newPassword) {
+            $user->setPassword($content->newPassword);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            return new Response("ok", Response::HTTP_OK);
+        }
+        throw new BadRequestHttpException("Formulaire invalid");
     }
 
     /**
@@ -83,6 +109,9 @@ class UserController extends AbstractFOSRestController
         }
         if(isset($content->shop)) {
             $user->setShop($content->shop);
+        }
+        if(isset($content->email)) {
+            $user->setEmail($content->email);
         }
     }
 
