@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class UserController extends AbstractFOSRestController
 {
@@ -47,9 +48,9 @@ class UserController extends AbstractFOSRestController
     }
 
     /**
-     * @Route (name="update_user", path="/auth/user", methods={"PUT"})
+     * @Route (name="update_me", path="/auth/user", methods={"PUT"})
      */
-    public function update(Request $request): Response {
+    public function updateMe(Request $request): Response {
         $content = json_decode($request->getContent());
         /** @var User $user */
         $user = $this->getUser();
@@ -62,9 +63,25 @@ class UserController extends AbstractFOSRestController
     }
 
     /**
+     * @Route (name="update_me", path="/auth/user/{id}", methods={"PUT"})
+     */
+    public function update(Request $request): Response {
+        $content = json_decode($request->getContent());
+        $em = $this->getDoctrine()->getManager();
+        $id = $request->get('id');
+        /** @var User $user */
+        $user = $em->getRepository(User::class)->find($id);
+        $this->fetchUser($user, $content);
+        $em->persist($user);
+        $em->flush();
+        $response = $this->container->get('serializer')->serialize($user, 'json');
+        return new Response($response, Response::HTTP_OK);
+    }
+
+    /**
      * @Route (name="change-password", path="/auth/change-password", methods={"POST"})
      */
-    public function changePassword(Request $request): Response {
+    public function changePassword(Request $request): JsonResponse {
         $content = json_decode($request->getContent());
         /** @var User $user */
         $user = $this->getUser();
@@ -73,19 +90,44 @@ class UserController extends AbstractFOSRestController
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-            return new Response("ok", Response::HTTP_OK);
+            return new JsonResponse("ok", Response::HTTP_OK);
         }
-        throw new BadRequestHttpException("Formulaire invalid");
+        else {
+            throw new BadRequestHttpException("Formulaire invalid");
+        }
     }
 
     /**
      * @Route (name="list_user", path="/auth/users", methods={"GET"})
      */
-    public function list(Request $request): Response {
+    public function list(Request $request, SerializerInterface $serializer): Response {
         $em = $this->getDoctrine()->getManager();
-        $response = $this->container->get('serializer')
-            ->serialize($em->getRepository(User::class)->findAll(), 'json');
+        $response = $serializer
+            ->serialize($em->getRepository(User::class)->findAll(), 'json', ['groups' => ['user:list']]);
         return new Response($response, Response::HTTP_OK);
+    }
+
+    /**
+     * @Route (name="get_user", path="/auth/user/{id}", methods={"GET"})
+     */
+    public function getUserById(Request $request): Response {
+        $id = $request->get("id");
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository(User::class)->find($id);
+        $response = $this->container->get('serializer')->serialize($user, 'json');
+        return new Response($response, Response::HTTP_OK);
+    }
+
+    /**
+     * @Route (name="delete_user", path="/auth/user/{id}", methods={"DELETE"})
+     */
+    public function delete(Request $request): JsonResponse {
+        $id = $request->get("id");
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository(User::class)->find($id);
+        $em->remove($user);
+        $em->flush();
+        return new JsonResponse("ok", Response::HTTP_OK);
     }
 
     private function fetchUser(User $user, object $content) {
@@ -112,6 +154,9 @@ class UserController extends AbstractFOSRestController
         }
         if(isset($content->email)) {
             $user->setEmail($content->email);
+        }
+        if(isset($content->roles)) {
+            $user->setRoles($content->roles);
         }
     }
 

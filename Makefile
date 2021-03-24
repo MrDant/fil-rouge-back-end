@@ -1,4 +1,4 @@
-FILES=-f ./docker-compose.yml -f ./auth/docker-compose.yml -f ./catalog/docker-compose.yml
+FILES=-f ./docker-compose.yml -f ./auth/docker-compose.yml -f ./catalog/docker-compose.yml -f ./order/docker-compose.yml
 up:
 	docker-compose ${FILES} up -d
 

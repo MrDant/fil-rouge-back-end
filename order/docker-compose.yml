@@ -1,0 +1,30 @@
+volumes:
+  order-db:
+
+services:
+  order-nginx:
+    container_name: order-nginx
+    build:
+      context: .docker/api/
+      args:
+        name: order
+    volumes:
+      - ./order/app:/usr/src/app
+    labels:
+      - traefik.http.routers.order.rule=PathPrefix(`/order`)
+
+  order-php:
+    container_name: order-php
+    build: .docker/fpm/
+    volumes:
+      - "./order/app:/usr/src/app"
+
+  order-db:
+    image: postgres
+    container_name: order-db
+    restart: always
+    volumes:
+      - order-db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: order-password
+      POSTGRES_DB: order-db

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -18,12 +19,14 @@ class User implements UserInterface
     public const ADMIN_ROLE = "ROLE_ADMIN";
     /**
      * @ORM\Id
+     * @Groups({"user:list","user"})
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
+     * @Groups({"user:list","user"})
      * @ORM\Column(type="string", length=255)
      */
     private $email;
@@ -34,6 +37,7 @@ class User implements UserInterface
     private $password;
 
     /**
+     * @Groups({"user"})
      * @ORM\Column(type="array", nullable=true)
      */
     private $roles = [];
@@ -44,31 +48,37 @@ class User implements UserInterface
     private $shop;
 
     /**
+     * @Groups({"user","user:list"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $firstname;
 
     /**
+     * @Groups({"user","user:list"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $lastname;
 
     /**
+     * @Groups("user")
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $phone;
 
     /**
+     * @Groups("user")
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $address;
 
     /**
+     * @Groups("user")
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $postalcode;
 
     /**
+     * @Groups("user")
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $city;
