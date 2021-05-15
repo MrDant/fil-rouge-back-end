@@ -114,7 +114,7 @@ class UserController extends AbstractFOSRestController
         $id = $request->get("id");
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository(User::class)->find($id);
-        $response = $this->container->get('serializer')->serialize($user, 'json');
+        $response = $this->container->get('serializer')->serialize($user, 'json', ['groups'=>'user']);
         return new Response($response, Response::HTTP_OK);
     }
 
