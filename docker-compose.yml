@@ -10,3 +10,10 @@ services:
       - "8081:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+
+  backup:
+    build: .docker/backup
+    container_name: backup
+    volumes:
+      - ./backup:/home
+      - /var/run/docker.sock:/var/run/docker.sock

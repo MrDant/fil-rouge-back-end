@@ -1,0 +1,3 @@
+30 01 * * * /dump.sh auth
+30 01 * * * /dump.sh catalog
+30 01 * * * /dump.sh order
